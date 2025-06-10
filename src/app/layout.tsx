@@ -5,7 +5,7 @@ import Footer from '@/components/layout/Footer';
 import './globals.css';
 
 export const metadata: Metadata = {
-  title: 'LearnFlow AI',
+  title: 'Maths Bridge',
   description: 'AI-Powered Online Learning Platform',
   icons: {
     icon: '/favicon.ico', // Assuming a favicon might be added later

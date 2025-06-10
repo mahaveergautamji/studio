@@ -10,7 +10,7 @@ export default function HomePage() {
       <section className="text-center py-16 md:py-24 rounded-xl bg-gradient-to-br from-primary/10 via-background to-background shadow-inner">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold font-headline mb-6 text-primary">
-            Welcome to LearnFlow AI
+            Welcome to Maths Bridge
           </h1>
           <p className="text-lg sm:text-xl text-foreground/80 max-w-2xl mx-auto mb-8">
             Unlock your learning potential with our AI-powered educational platform. Tailored for students and educators from grades 1-12.
@@ -29,7 +29,7 @@ export default function HomePage() {
       <section id="features" className="py-16">
         <div className="container mx-auto px-4">
           <h2 className="text-3xl font-bold font-headline text-center mb-12 text-primary">
-            Why Choose LearnFlow AI?
+            Why Choose Maths Bridge?
           </h2>
           <div className="grid md:grid-cols-3 gap-8">
             <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
@@ -82,7 +82,7 @@ export default function HomePage() {
               Ready to Transform Learning?
             </h2>
             <p className="text-lg text-foreground/80 mb-8">
-              Join LearnFlow AI today and experience the future of education. Whether you're a student aiming for success or an educator looking to inspire, our platform has the tools you need.
+              Join Maths Bridge today and experience the future of education. Whether you're a student aiming for success or an educator looking to inspire, our platform has the tools you need.
             </p>
             <Button size="lg" asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
               <Link href="/dashboard">Sign Up Now</Link>

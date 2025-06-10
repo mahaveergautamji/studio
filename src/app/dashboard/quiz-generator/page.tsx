@@ -2,7 +2,7 @@ import QuizGeneratorForm from '@/components/quiz/QuizGeneratorForm';
 import { FileQuestion } from 'lucide-react';
 
 export const metadata = {
-  title: 'AI Quiz Generator - LearnFlow AI',
+  title: 'AI Quiz Generator - Maths Bridge',
   description: 'Generate custom quizzes on any topic using AI.',
 };
 

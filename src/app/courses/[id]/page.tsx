@@ -101,11 +101,11 @@ export async function generateMetadata({ params }: { params: { id: string } }) {
   const course = MOCK_COURSES.find(c => c.id === params.id);
   if (!course) {
     return {
-      title: 'Course Not Found - LearnFlow AI',
+      title: 'Course Not Found - Maths Bridge',
     };
   }
   return {
-    title: `${course.title} - LearnFlow AI`,
+    title: `${course.title} - Maths Bridge`,
     description: course.description,
   };
 }

@@ -8,7 +8,7 @@ export default function Header() {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-20">
         <Link href="/" className="flex items-center gap-2 text-2xl font-headline font-semibold text-primary hover:text-primary/80 transition-colors">
           <Brain className="h-8 w-8" />
-          <span>LearnFlow AI</span>
+          <span>Maths Bridge</span>
         </Link>
         <nav className="flex items-center gap-2 sm:gap-4">
           <Button variant="ghost" asChild>

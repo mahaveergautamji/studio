@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { UserCircle } from 'lucide-react';
 
 export const metadata = {
-  title: 'My Account - LearnFlow AI',
+  title: 'My Account - Maths Bridge',
 };
 
 export default function AccountPage() {
