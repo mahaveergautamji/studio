@@ -98,7 +98,7 @@ export default function AccountPage() {
                 <Button 
                   key={provider.name} 
                   variant="outline" 
-                  className="w-full justify-center py-3 text-base"
+                  className="w-full justify-center py-2 text-sm sm:py-3 sm:text-base"
                   onClick={() => handleSocialSignIn(provider.name)}
                 >
                   {provider.icon}
