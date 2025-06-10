@@ -12,7 +12,7 @@
 import {ai} from '@/ai/genkit';
 import {z} from 'genkit';
 
-export const CourseSchema = z.object({
+const CourseSchema = z.object({
   id: z.string().describe("A unique, URL-friendly identifier for the course (e.g., 'intro-to-algebra', 'world-history-101'). Use lowercase and hyphens."),
   title: z.string().describe("The full title of the course (e.g., 'Introduction to Algebra', 'World History: Ancient Civilizations')."),
   description: z.string().describe("A brief (1-2 sentences) description of the course, highlighting key learning outcomes."),
