@@ -2,10 +2,12 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import CourseCard from '@/components/dashboard/CourseCard';
-import { MOCK_COURSES } from '@/lib/constants';
+import { getCourses } from '@/lib/constants'; // Updated import
 import { FileQuestion, MessageSquareText, LayoutDashboard } from 'lucide-react';
 
-export default function DashboardPage() {
+export default async function DashboardPage() {
+  const courses = await getCourses();
+
   return (
     <div className="space-y-12">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -20,18 +22,18 @@ export default function DashboardPage() {
       </div>
       
       <section>
-        <h2 className="text-2xl font-semibold font-headline mb-6 text-foreground/90">My Courses</h2>
-        {MOCK_COURSES.length > 0 ? (
+        <h2 className="text-2xl font-semibold font-headline mb-6 text-foreground/90">My AI-Generated Courses</h2>
+        {courses.length > 0 ? (
           <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {MOCK_COURSES.map((course) => (
+            {courses.map((course) => (
               <CourseCard key={course.id} course={course} />
             ))}
           </div>
         ) : (
           <Card className="text-center py-12">
             <CardContent>
-              <p className="text-muted-foreground mb-4">You are not enrolled in any courses yet.</p>
-              <Button variant="outline">Explore Courses</Button>
+              <p className="text-muted-foreground mb-4">No courses available at the moment. AI might be busy!</p>
+              <Button variant="outline" disabled>Explore Courses</Button>
             </CardContent>
           </Card>
         )}

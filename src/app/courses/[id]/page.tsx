@@ -1,4 +1,4 @@
-import { MOCK_COURSES, type Course } from '@/lib/constants';
+import { getCourses, type Course, FALLBACK_MOCK_COURSES } from '@/lib/constants'; // Updated import
 import { Button } from '@/components/ui/button';
 import { ArrowLeft, PlayCircle, ListChecks, Edit2 } from 'lucide-react';
 import Link from 'next/link';
@@ -7,19 +7,38 @@ import Image from 'next/image';
 
 
 export async function generateStaticParams() {
-  return MOCK_COURSES.map((course) => ({
+  // Fetch courses for static generation. If AI fails, use fallback.
+  let coursesToGenerateParamsFor: Course[] = [];
+  try {
+    coursesToGenerateParamsFor = await getCourses();
+  } catch (error) {
+    console.error("Failed to fetch AI courses for generateStaticParams, using fallback:", error);
+    coursesToGenerateParamsFor = FALLBACK_MOCK_COURSES;
+  }
+  if (coursesToGenerateParamsFor.length === 0) {
+     coursesToGenerateParamsFor = FALLBACK_MOCK_COURSES; // Ensure some params if AI returns empty
+  }
+
+  return coursesToGenerateParamsFor.map((course) => ({
     id: course.id,
   }));
 }
 
-export default function CoursePage({ params }: { params: { id: string } }) {
-  const course = MOCK_COURSES.find(c => c.id === params.id);
+export default async function CoursePage({ params }: { params: { id: string } }) {
+  const allCourses = await getCourses();
+  let course = allCourses.find(c => c.id === params.id);
+
+  if (!course && FALLBACK_MOCK_COURSES.length > 0) {
+    // Attempt to find in fallback if not in AI generated ones (e.g. during dev or if AI failed)
+    course = FALLBACK_MOCK_COURSES.find(c => c.id === params.id);
+  }
+
 
   if (!course) {
     return (
       <div className="text-center py-10">
         <h1 className="text-2xl font-bold text-destructive">Course not found</h1>
-        <p className="text-muted-foreground">The course you are looking for does not exist.</p>
+        <p className="text-muted-foreground">The course you are looking for does not exist or could not be loaded.</p>
         <Button asChild variant="link" className="mt-4">
           <Link href="/dashboard">
             <ArrowLeft className="mr-2 h-4 w-4" /> Back to Dashboard
@@ -42,10 +61,12 @@ export default function CoursePage({ params }: { params: { id: string } }) {
            <Image 
             src={`https://placehold.co/1200x400.png?text=${encodeURIComponent(course.title)}`}
             alt={course.title} 
-            layout="fill"
-            objectFit="cover"
+            fill // Changed from layout="fill"
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // Added sizes prop
+            style={{objectFit:"cover"}} // Changed from objectFit="cover"
             data-ai-hint="education learning"
             className="bg-muted"
+            priority // Added priority for LCP
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
             <div className="absolute bottom-0 left-0 p-6 md:p-8">
@@ -98,7 +119,13 @@ export default function CoursePage({ params }: { params: { id: string } }) {
 }
 
 export async function generateMetadata({ params }: { params: { id: string } }) {
-  const course = MOCK_COURSES.find(c => c.id === params.id);
+  const allCourses = await getCourses();
+  let course = allCourses.find(c => c.id === params.id);
+
+  if (!course && FALLBACK_MOCK_COURSES.length > 0) {
+     course = FALLBACK_MOCK_COURSES.find(c => c.id === params.id);
+  }
+
   if (!course) {
     return {
       title: 'Course Not Found - Maths Bridge',
