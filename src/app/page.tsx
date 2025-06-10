@@ -90,7 +90,7 @@ export default function HomePage() {
           </div>
           <div>
             <Image 
-              src="https://placehold.co/600x400.png" 
+              src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3NDE5ODJ8MHwxfHNlYXJjaHwzfHxlZHVjYXRpb258ZW58MHx8fHwxNzQ5NDQ3NzU1fDA&ixlib=rb-4.1.0&q=80&w=1080" 
               alt="Students learning with AI" 
               width={600} 
               height={400}
