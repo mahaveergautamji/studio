@@ -2,8 +2,8 @@ import Link from 'next/link';
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import CourseCard from '@/components/dashboard/CourseCard';
-import { getCourses } from '@/lib/constants'; // Updated import
-import { FileQuestion, MessageSquareText, LayoutDashboard } from 'lucide-react';
+import { getCourses } from '@/lib/constants';
+import { FileQuestion, MessageSquareText, LayoutDashboard, BookMarked } from 'lucide-react';
 
 export default async function DashboardPage() {
   const courses = await getCourses();
@@ -62,21 +62,23 @@ export default async function DashboardPage() {
               </Button>
             </CardContent>
           </Card>
-          <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300 opacity-70 cursor-not-allowed">
+          <Card className="shadow-lg hover:shadow-xl transition-shadow duration-300">
              <CardHeader>
               <div className="flex items-center gap-3 mb-2">
-                <div className="p-2 bg-secondary/20 rounded-md">
-                  <MessageSquareText className="h-6 w-6 text-secondary-foreground" />
+                <div className="p-2 bg-accent/10 rounded-md">
+                  <BookMarked className="h-6 w-6 text-accent" />
                 </div>
-                <CardTitle className="text-xl font-headline">AI Homework Helper (Coming Soon)</CardTitle>
+                <CardTitle className="text-xl font-headline">AI Homework Helper</CardTitle>
               </div>
             </CardHeader>
             <CardContent>
               <CardDescription className="mb-4">
-                Get assistance with challenging homework problems and understand complex concepts.
+                Get assistance with challenging homework problems and understand complex concepts using AI prompts.
               </CardDescription>
-              <Button disabled variant="secondary">
-                Use Helper
+              <Button asChild className="bg-accent hover:bg-accent/90 text-accent-foreground">
+                <Link href="/dashboard/homework-helper">
+                  Get Homework Help
+                </Link>
               </Button>
             </CardContent>
           </Card>
